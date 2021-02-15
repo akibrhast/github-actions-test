@@ -36,7 +36,7 @@ jobs:
       uses: creyD/prettier_action@v3.1
       with:
         # This part is also where you can pass other options, for example:
-        prettier_options: --write **/*.{js,md,json,py}
+        prettier_options: --write **/*.{js,md,json}
 
     - name: Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v3.0.0
