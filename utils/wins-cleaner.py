@@ -5,19 +5,34 @@ import json
 from dotenv import load_dotenv
 load_dotenv()
 
-#https://sheets.googleapis.com/v4/spreadsheets/1tj6eQlVLFgmskoXouVt87POxYVwR1yWT2vOSQEPyDtg/values/%27Responses%27!A2:O?key=
 WINS_API_KEY = os.getenv('WINS_API_KEY')
-SPREAD_SHEET_ID = '1tj6eQlVLFgmskoXouVt87POxYVwR1yWT2vOSQEPyDtg'
+SPREAD_SHEET_ID = '1zkr_dEyiT-WTksUkVyL4jYQuYC5_YvJCLrUIfBf1CeE'
 BASE_API_URL = 'https://sheets.googleapis.com/v4/spreadsheets'
 
 
-request_url = f"{BASE_API_URL}/{SPREAD_SHEET_ID}/values/\'Responses\'!A2:O?key={WINS_API_KEY}"
+#request_url = f"{BASE_API_URL}/{SPREAD_SHEET_ID}/values/\'Sheet1\'!A1:O?key={WINS_API_KEY}"
+request_url = f"{BASE_API_URL}/{SPREAD_SHEET_ID}/values/\'Sheet1\'!A1:O?key=AIzaSyDsY0jyeGRnVYmQco1Pt0fW3iDyfHiyYZE"
+
 
 request_data = re.get(request_url).json()['values']
+keys = request_data[0]
 
-container = [{f'key_{index}':value for (index,value) in enumerate(person) } for person in request_data]
+#Example 1 liner: container = [{f'{keys[index]}':value.replace('""',"") for (index,value) in enumerate(person) if keys[index] != 'email'} for person in request_data[1::] if person[13] != 'FALSE']
 
-with open('wins-data.json','w+') as f: json.dump(container,f)
+container = []
+for person in request_data[1::]:
+    obj={}
+    if person[13] != 'FALSE':
+        for (index,value) in enumerate(person):
+            if keys[index] != 'email' :
+                obj[keys[index]] = value.replace('""','')
+        del obj['display']
+        
+        container.append(obj)
+
+
+with open('_data/_wins-data.json','w+') as f: 
+    json.dump(container,f,indent=4)
 
 
 
