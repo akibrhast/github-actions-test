@@ -1,8 +1,9 @@
 ---
-name: New Guide Page Template
-about: Use this template when creating a new guide page
-title: New Guide Page - [Title of the Guide]
-labels: guide
+name: New/Update Project Template
+about: Use this template when creating a new project card or editing an existing project
+  card
+title: Project Card - [Name Of Project]
+labels: project-card
 assignees: ''
 
 ---
