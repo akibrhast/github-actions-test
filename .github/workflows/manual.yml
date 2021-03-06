@@ -40,8 +40,4 @@ jobs:
       env:
           WINS_API_KEY: ${{ secrets.WINS_API_KEY }}
       run: python utils/routes.py
-    
-
-
-        # Optional commit user and author settings
-        commit_author: GitHub Actions Bot <akibrhast>
+    ommit_author: GitHub Actions Bot <akibrhast>
