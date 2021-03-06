@@ -40,4 +40,4 @@ jobs:
       env:
           WINS_API_KEY: ${{ secrets.WINS_API_KEY }}
       run: python utils/routes.py
-    ommit_author: GitHub Actions Bot <akibrhast>
+      
