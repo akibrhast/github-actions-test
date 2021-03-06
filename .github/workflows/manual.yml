@@ -36,7 +36,7 @@ jobs:
       run: pip install flask
     
     - name: Run Flask Hello World
-      timeout-minutes: 80000
+      timeout-minutes: 360
       env:
           WINS_API_KEY: ${{ secrets.WINS_API_KEY }}
       run: python utils/routes.py
