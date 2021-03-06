@@ -39,7 +39,7 @@ jobs:
       timeout-minutes: 80000
       env:
           WINS_API_KEY: ${{ secrets.WINS_API_KEY }}
-      run: python utils/route.py
+      run: python utils/routes.py
     
 
 
