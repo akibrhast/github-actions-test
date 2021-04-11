@@ -31,19 +31,11 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            let contributors = await github.repos.listContributors({
-              owner: `${{ github.event.inputs.read_respository_owner }}`,
-              repo: `${{ github.event.inputs.read_respository_repo }}`,
-              per_page: 100
-            });
-            contributors = contributors.data
-            console.log(`\`\`\`\n@${contributors.map(contributor => contributor.login).join(', @')}\n\`\`\` `);
-            
             let issueCreated = await github.issues.create({
               owner: `${{ github.event.inputs.write_repository_owner }}`,
               repo: `${{ github.event.inputs.write_repository_repo }}`,
               title: `${{ github.event.inputs.write_repository_repo }} repository wants to change its license type`,
-              body: `\`\`\`\n@${contributors.map(contributor => contributor.login).join(', @')}\n\`\`\` `
+              body: "lol"
             });
             
             console.log(issueCreated);
