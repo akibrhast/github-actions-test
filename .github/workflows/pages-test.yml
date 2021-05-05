@@ -1,0 +1,27 @@
+# This is a basic workflow that is manually triggered
+
+name: pages test
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+
+jobs:
+  basic-publish: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set the GH Pages branch
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}} # Need a PAT to switch the branch
+        script: |
+          await github.repos.updateInformationAboutPagesSite({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            source: {
+              branch: "gh-pages",
+              path: "/"
+            }
+          })
